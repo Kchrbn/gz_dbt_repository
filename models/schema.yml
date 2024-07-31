@@ -1,14 +1,26 @@
 version: 2
 
-sources: 
+sources:
   - name: gz_raw_data
-    schema: gz_raw_data 
+    schema: gz_raw_data
     description: greenweez raw data source
-    tables: 
+    tables:
       - name: sales
         identifier: raw_gz_sales
-        description: sales of greenweez / we have one row per product_id found in each orders_id. 
-      - name: ship 
+        description: sales of greenweez / we have one row per product_id found in each orders_id.
+        tests:
+          - unique:
+              column_name: "(orders_id || '-' || pdt_id)"
+
+      - name: ship
         identifier: raw_gz_ship
       - name: product
         identifier: raw_gz_product
+      - name: facebook
+        identifier: raw_gz_facebook
+      - name: criteo
+        identifier: raw_gz_criteo
+      - name: bing
+        identifier: raw_gz_bing
+      - name: adwords
+        identifier: raw_gz_adwords
